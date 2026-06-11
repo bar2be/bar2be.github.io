@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <a aria-label="Download Bartube" href="./assets/bartube.dmg">
+  <a aria-label="Download Bartube" href="https://bar2be.github.io/downloads/Bartube.zip">
     <img alt="Download Bartube" src="https://img.shields.io/badge/Download-Bartube-black.svg?style=for-the-badge&logo=apple">
   </a>
 </p>
@@ -40,12 +40,6 @@ Instead of keeping a YouTube tab open all day, Bartube gives you a cleaner deskt
 - In-app settings for playlist and API key
 - Lightweight interface designed for repeat daily use
 
-## Download
-
-Download the latest build here:
-
-- [Bartube.dmg](./assets/bartube.dmg)
-
 ## Before You Start
 
 Bartube currently requires:
@@ -57,7 +51,7 @@ This key is used so the app can load playlist information from YouTube.
 
 ## Setup
 
-1. Download and open `Bartube.dmg`.
+1. Download and open `Bartube.zip`.
 2. Move `Bartube.app` into your `Applications` folder.
 3. Launch Bartube.
 4. Open the app from the menu bar.
@@ -66,6 +60,13 @@ This key is used so the app can load playlist information from YouTube.
 7. Optionally paste your own playlist ID.
 8. Start playback.
 
+## FAQ
+
+What if macOS blocks the app on first launch?
+```shell
+xattr -dr com.apple.quarantine /Applications/Bartube.app
+```
+                        
 ## How To Use Your Own Playlist
 
 If you already have a YouTube playlist you use every day:
