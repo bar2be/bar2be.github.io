@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bartube for macOS | Menu Bar YouTube Playlist Player</title>
+    <meta name="description" content="Bartube is a native macOS menu bar YouTube playlist player with background audio, custom playlists, and a cleaner desktop workflow.">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="author" content="Bartube">
+    <meta name="theme-color" content="#0A0A0A">
+    <meta name="application-name" content="Bartube">
+    <meta name="apple-mobile-web-app-title" content="Bartube">
+    <meta name="format-detection" content="telephone=no">
+
+    <meta property="og:title" content="Bartube for macOS | Menu Bar YouTube Playlist Player">
+    <meta property="og:description" content="Playlist playback in your menu bar. Native, focused, and built for background listening.">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Bartube">
+    <meta property="og:image" content="./assets/Screenshot1.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Bartube for macOS | Menu Bar YouTube Playlist Player">
+    <meta name="twitter:description" content="A native macOS YouTube playlist player for background listening and a cleaner workspace.">
+    <meta name="twitter:image" content="./assets/Screenshot1.png">
+
+    <link rel="icon" type="image/png" href="./assets/logo.png">
+    <link rel="apple-touch-icon" href="./assets/logo.png">
+    <link rel="manifest" href="./site.webmanifest">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            "name": "Bartube",
+            "applicationCategory": "MultimediaApplication",
+            "applicationSubCategory": "MusicApplication",
+            "operatingSystem": "macOS 14.0 or later",
+            "description": "Bartube is a native macOS menu bar YouTube playlist player with background audio and custom playlist support.",
+            "image": "./assets/Screenshot1.png",
+            "screenshot": [
+                "./assets/Screenshot1.png",
+                "./assets/Screenshot2.png"
+            ],
+            "offers": {
+                "@type": "Offer",
+                "url": "./assets/bartube.dmg",
+                "price": "0",
+                "priceCurrency": "USD",
+                "availability": "https://schema.org/InStock"
+            }
+        }
+    </script>
+
+    <style>
+        :root {
+            --background: #0A0A0A;
+            --foreground: #FAFAFA;
+            --muted: #1A1A1A;
+            --muted-foreground: #737373;
+            --accent: #FF3D00;
+            --border: #262626;
+            --card: #0F0F0F;
+            --ring: #FF3D00;
+            --container: 1200px;
+            --ease: cubic-bezier(0.25, 0, 0, 1);
+            --noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.9'/%3E%3C/svg%3E");
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: "Inter", system-ui, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            letter-spacing: -0.01em;
+            color: var(--foreground);
+            background:
+                radial-gradient(circle at top right, rgba(255, 61, 0, 0.12), transparent 28%),
+                radial-gradient(circle at bottom left, rgba(255, 61, 0, 0.08), transparent 22%),
+                var(--background);
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background-image: var(--noise);
+            background-size: 180px 180px;
+            opacity: 0.015;
+            pointer-events: none;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        :focus-visible {
+            outline: 2px solid var(--ring);
+            outline-offset: 2px;
+        }
+
+        .container {
+            width: min(var(--container), calc(100% - 48px));
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .site-header {
+            border-bottom: 1px solid var(--border);
+        }
+
+        .site-header__inner {
+            min-height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .brand__mark {
+            width: 38px;
+            height: 38px;
+            overflow: hidden;
+        }
+
+        .brand__mark img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .brand__text {
+            font-family: "Inter Tight", "Inter", system-ui, sans-serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+
+        .button {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            min-height: 44px;
+            white-space: nowrap;
+            transition: color 150ms var(--ease), background-color 150ms var(--ease), border-color 150ms var(--ease), transform 150ms var(--ease);
+        }
+
+        .button:active {
+            transform: translateY(1px);
+        }
+
+        .button--primary {
+            font-family: "Inter Tight", "Inter", system-ui, sans-serif;
+            font-size: 0.92rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent);
+            padding: 10px 0;
+        }
+
+        .button--primary::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--accent);
+            transform-origin: left;
+            transition: transform 150ms var(--ease);
+        }
+
+        .button--primary:hover::after {
+            transform: scaleX(1.08);
+        }
+
+        .button--secondary {
+            border: 1px solid var(--foreground);
+            padding: 0 22px;
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.78rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+
+        .button--secondary:hover {
+            background: var(--foreground);
+            color: var(--background);
+        }
+
+        .eyebrow {
+            display: inline-block;
+            margin-bottom: 16px;
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.74rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
+        .eyebrow::after {
+            content: "";
+            display: block;
+            width: 64px;
+            height: 2px;
+            margin-top: 12px;
+            background: var(--accent);
+        }
+
+        .panel {
+            padding: 96px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .hero {
+            padding: 48px 0 72px;
+        }
+
+        .hero__grid {
+            display: grid;
+            grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+            gap: 40px;
+            align-items: center;
+        }
+
+        .hero__title {
+            font-family: "Inter Tight", "Inter", system-ui, sans-serif;
+            font-size: clamp(2.4rem, 4.8vw, 5rem);
+            line-height: 0.94;
+            letter-spacing: -0.06em;
+            text-transform: uppercase;
+            max-width: 13ch;
+        }
+
+        .hero__title span {
+            color: var(--accent);
+        }
+
+        .hero__copy {
+            margin-top: 18px;
+            max-width: 46ch;
+            font-size: 1.02rem;
+            color: var(--muted-foreground);
+        }
+
+        .hero__actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            align-items: center;
+            margin-top: 24px;
+        }
+
+        .hero__visual {
+            position: relative;
+            min-height: 500px;
+        }
+
+        .hero__frame {
+            position: absolute;
+            border: 1px solid var(--border);
+            background: var(--card);
+            padding: 14px;
+        }
+
+        .hero__frame img {
+            border: 1px solid var(--border);
+        }
+
+        .hero__frame--main {
+            left: 0;
+            top: 0;
+            width: min(84%, 500px);
+            z-index: 2;
+        }
+
+        .hero__frame--alt {
+            right: 0;
+            bottom: 0;
+            width: min(62%, 320px);
+            z-index: 3;
+        }
+
+        .hero__frame--ghost {
+            position: absolute;
+            right: 26px;
+            top: 30px;
+            width: min(74%, 420px);
+            height: 78%;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            z-index: 1;
+        }
+
+        .hero__proof {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 28px;
+            color: var(--muted-foreground);
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.74rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .three-up {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 0;
+            border-top: 1px solid var(--border);
+            border-left: 1px solid var(--border);
+        }
+
+        .point {
+            min-height: 280px;
+            padding: 28px;
+            border-right: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .point__number {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.76rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
+        .point__title {
+            margin-top: 42px;
+            font-family: "Inter Tight", "Inter", system-ui, sans-serif;
+            font-size: clamp(1.8rem, 2.5vw, 2.5rem);
+            line-height: 0.98;
+            letter-spacing: -0.05em;
+            text-transform: uppercase;
+            max-width: 9ch;
+        }
+
+        .point__copy {
+            margin-top: 14px;
+            color: var(--muted-foreground);
+            max-width: 28ch;
+        }
+
+        .cta {
+            display: grid;
+            grid-template-columns: minmax(0, 8fr) minmax(0, 4fr);
+            gap: 32px;
+            align-items: end;
+        }
+
+        .cta__title {
+            font-family: "Inter Tight", "Inter", system-ui, sans-serif;
+            font-size: clamp(2.1rem, 4.4vw, 4.6rem);
+            line-height: 0.94;
+            letter-spacing: -0.06em;
+            text-transform: uppercase;
+            max-width: 16ch;
+        }
+
+        .cta__copy {
+            margin-top: 18px;
+            max-width: 44ch;
+            color: var(--muted-foreground);
+            font-size: 1.04rem;
+        }
+
+        .cta__box {
+            border: 1px solid var(--border);
+            padding: 26px;
+            background: var(--card);
+        }
+
+        .cta__list {
+            list-style: none;
+            margin-bottom: 24px;
+        }
+
+        .cta__list li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+            color: var(--muted-foreground);
+            font-size: 0.96rem;
+        }
+
+        .cta__list li:first-child {
+            border-top: 1px solid var(--border);
+        }
+
+        .footer {
+            padding: 24px 0 36px;
+        }
+
+        .footer__inner {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .footer__copy {
+            color: var(--muted-foreground);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 980px) {
+            .hero__grid,
+            .cta {
+                grid-template-columns: 1fr;
+            }
+
+            .three-up {
+                grid-template-columns: 1fr;
+            }
+
+            .hero__visual {
+                min-height: 420px;
+            }
+        }
+
+        @media (max-width: 720px) {
+            .container {
+                width: min(var(--container), calc(100% - 24px));
+            }
+
+            .site-header__inner,
+            .footer__inner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .panel {
+                padding: 72px 0;
+            }
+
+            .hero {
+                padding: 36px 0 56px;
+            }
+
+            .hero__title {
+                font-size: clamp(2.4rem, 12vw, 4rem);
+                max-width: none;
+            }
+
+            .hero__visual {
+                min-height: 320px;
+            }
+
+            .hero__frame--main {
+                width: min(90%, 340px);
+            }
+
+            .hero__frame--alt {
+                width: min(68%, 220px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container site-header__inner">
+            <a class="brand" href="./">
+                <span class="brand__mark" aria-hidden="true">
+                    <img src="./assets/logo.png" alt="Bartube logo">
+                </span>
+                <span class="brand__text">Bartube</span>
+            </a>
+            <a class="button button--primary" data-download-link href="./downloads/Bartube.zip">Download</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="panel hero">
+            <div class="container hero__grid">
+                <div>
+                    <span class="eyebrow">Menu bar YouTube</span>
+                    <h1 class="hero__title">Play your playlist, <span>keep your screen clean.</span></h1>
+                    <p class="hero__copy">
+                        Bartube gives you the useful part of YouTube: open the menu bar, press play, and keep listening without a tab
+                        permanently occupying your desktop.
+                    </p>
+                    <div class="hero__actions">
+                        <a class="button button--primary" data-download-link href="./downloads/Bartube.zip">Download Bartube</a>
+                        <a class="button button--secondary" href="#why">Why it feels better</a>
+                    </div>
+                    <div class="hero__proof">
+                        <span data-latest-version>Latest version</span>
+                        <span>Automatic in-app checks</span>
+                        <span>Manual zip install</span>
+                    </div>
+                    <p class="hero__copy" style="margin-top: 16px;" data-install-note>
+                        First launch may require: <code>xattr -dr com.apple.quarantine Bartube.app</code>
+                    </p>
+                </div>
+
+                <div class="hero__visual">
+                    <div class="hero__frame hero__frame--ghost" aria-hidden="true"></div>
+                    <figure class="hero__frame hero__frame--main">
+                        <img src="./assets/Screenshot1.png" alt="Bartube playlist playback interface" loading="eager">
+                    </figure>
+                    <figure class="hero__frame hero__frame--alt">
+                        <img src="./assets/Screenshot2.png" alt="Bartube settings interface" loading="lazy">
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        <section class="panel" id="why">
+            <div class="container">
+                <span class="eyebrow">Three reasons</span>
+                <div class="three-up">
+                    <article class="point">
+                        <div class="point__number">01</div>
+                        <h2 class="point__title">No more tab clutter</h2>
+                        <p class="point__copy">
+                            Your music or long playlist lives in the menu bar instead of competing with work tabs all day.
+                        </p>
+                    </article>
+                    <article class="point">
+                        <div class="point__number">02</div>
+                        <h2 class="point__title">Playback stays close</h2>
+                        <p class="point__copy">
+                            Previous, play, pause, and next are always one click away, with the current title visible in the menu bar.
+                        </p>
+                    </article>
+                    <article class="point">
+                        <div class="point__number">03</div>
+                        <h2 class="point__title">Built for repeat listening</h2>
+                        <p class="point__copy">
+                            Custom playlists, automatic next-track flow, and a native desktop feel make it easy to come back every day.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="panel">
+            <div class="container cta">
+                <div>
+                    <span class="eyebrow">Download</span>
+                    <h2 class="cta__title">If you mainly use YouTube for listening, this is the cleaner way.</h2>
+                    <p class="cta__copy">
+                        Bartube is a focused utility, not a bloated media shell. It removes friction, reduces distraction,
+                        and makes playlist playback feel like part of macOS instead of another website.
+                    </p>
+                </div>
+
+                <aside class="cta__box">
+                    <ul class="cta__list">
+                        <li>Native macOS menu bar app</li>
+                        <li>Custom playlist support</li>
+                        <li>Background audio playback</li>
+                        <li>Simple setup with your API key</li>
+                    </ul>
+                    <a class="button button--primary" data-download-link href="./downloads/Bartube.zip">Download Bartube</a>
+                </aside>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer__inner">
+            <p class="footer__copy">Bartube for macOS. Playlist playback that stays out of the way.</p>
+        </div>
+    </footer>
+
+    <script>
+        /*
+         * Publishing notes:
+         * This page reads latest.json from the published site and updates the
+         * download buttons automatically.
+         */
+        const SITE_URL = "https://bar2be.github.io/";
+        const DEFAULT_DOWNLOAD_URL = "./downloads/Bartube.zip";
+        const LATEST_JSON_URL = "./latest.json";
+
+        document.querySelectorAll("[data-download-link]").forEach((link) => {
+            link.href = DEFAULT_DOWNLOAD_URL;
+        });
+
+        if (SITE_URL) {
+            const normalizedSiteUrl = SITE_URL.endsWith("/") ? SITE_URL : `${SITE_URL}/`;
+            const socialImage = new URL("./assets/Screenshot1.png", normalizedSiteUrl).href;
+            const iconUrl = new URL("./assets/logo.png", normalizedSiteUrl).href;
+
+            const canonical = document.createElement("link");
+            canonical.rel = "canonical";
+            canonical.href = normalizedSiteUrl;
+            document.head.appendChild(canonical);
+
+            const setMeta = (selector, value) => {
+                const node = document.querySelector(selector);
+                if (node) node.setAttribute("content", value);
+            };
+
+            setMeta('meta[property="og:url"]', normalizedSiteUrl);
+            setMeta('meta[property="og:image"]', socialImage);
+            setMeta('meta[name="twitter:image"]', socialImage);
+
+            document.querySelector('link[rel="icon"]')?.setAttribute("href", iconUrl);
+            document.querySelector('link[rel="apple-touch-icon"]')?.setAttribute("href", iconUrl);
+
+            const schemaNode = document.querySelector('script[type="application/ld+json"]');
+            if (schemaNode) {
+                try {
+                    const schema = JSON.parse(schemaNode.textContent);
+                    schema.url = normalizedSiteUrl;
+                    schema.image = socialImage;
+                    schema.screenshot = [
+                        new URL("./assets/Screenshot1.png", normalizedSiteUrl).href,
+                        new URL("./assets/Screenshot2.png", normalizedSiteUrl).href
+                    ];
+                    schema.offers.url = DEFAULT_DOWNLOAD_URL || normalizedSiteUrl;
+                    schemaNode.textContent = JSON.stringify(schema);
+                } catch {}
+            }
+        }
+
+        fetch(LATEST_JSON_URL)
+            .then((response) => response.ok ? response.json() : null)
+            .then((latest) => {
+                if (!latest) return;
+
+                if (latest.downloadURL) {
+                    document.querySelectorAll("[data-download-link]").forEach((link) => {
+                        link.href = latest.downloadURL;
+                    });
+                }
+
+                if (latest.version) {
+                    const versionText = `Latest ${latest.version}${latest.build ? ` (${latest.build})` : ""}`;
+                    document.querySelectorAll("[data-latest-version]").forEach((node) => {
+                        node.textContent = versionText;
+                    });
+                }
+
+                if (latest.quarantineCommand) {
+                    const note = document.querySelector("[data-install-note]");
+                    if (note) {
+                        note.innerHTML = `First launch may require: <code>${latest.quarantineCommand}</code>`;
+                    }
+                }
+            })
+            .catch(() => {});
+    </script>
+</body>
+</html>
