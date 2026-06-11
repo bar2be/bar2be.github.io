@@ -373,6 +373,63 @@
             max-width: 28ch;
         }
 
+        .faq {
+            display: grid;
+            grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+            gap: 32px;
+            align-items: start;
+        }
+
+        .faq__intro {
+            color: var(--muted-foreground);
+            max-width: 28ch;
+            font-size: 1rem;
+        }
+
+        .faq__list {
+            display: grid;
+            gap: 14px;
+        }
+
+        .faq__item {
+            border: 1px solid var(--border);
+            background: var(--card);
+        }
+
+        .faq__question {
+            list-style: none;
+            cursor: pointer;
+            padding: 20px 24px;
+            font-family: "Inter Tight", "Inter", system-ui, sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        .faq__question::-webkit-details-marker {
+            display: none;
+        }
+
+        .faq__question::after {
+            content: "+";
+            float: right;
+            color: var(--accent);
+            font-family: "JetBrains Mono", monospace;
+        }
+
+        .faq__item[open] .faq__question::after {
+            content: "-";
+        }
+
+        .faq__answer {
+            padding: 0 24px 22px;
+            color: var(--muted-foreground);
+        }
+
+        .faq__answer code {
+            color: var(--foreground);
+        }
+
         .cta {
             display: grid;
             grid-template-columns: minmax(0, 8fr) minmax(0, 4fr);
@@ -436,7 +493,8 @@
 
         @media (max-width: 980px) {
             .hero__grid,
-            .cta {
+            .cta,
+            .faq {
                 grid-template-columns: 1fr;
             }
 
@@ -519,9 +577,6 @@
                         <span>Automatic in-app checks</span>
                         <span>Manual zip install</span>
                     </div>
-                    <p class="hero__copy" style="margin-top: 16px;" data-install-note>
-                        First launch may require: <code>xattr -dr com.apple.quarantine Bartube.app</code>
-                    </p>
                 </div>
 
                 <div class="hero__visual">
@@ -561,6 +616,31 @@
                             Custom playlists, automatic next-track flow, and a native desktop feel make it easy to come back every day.
                         </p>
                     </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="panel" id="faq">
+            <div class="container faq">
+                <div>
+                    <span class="eyebrow">FAQ</span>
+                    <p class="faq__intro">
+                        A few quick answers before you install or set up Bartube.
+                    </p>
+                </div>
+                <div class="faq__list">
+                    <details class="faq__item" open>
+                        <summary class="faq__question">What if macOS blocks the app on first launch?</summary>
+                        <p class="faq__answer" data-install-note>
+                            First launch may require: <code>xattr -dr com.apple.quarantine Bartube.app</code>
+                        </p>
+                    </details>
+                    <details class="faq__item">
+                        <summary class="faq__question">What do I need to get started?</summary>
+                        <p class="faq__answer">
+                            Install the app, add your API key in settings, then start playing YouTube playlists from the menu bar.
+                        </p>
+                    </details>
                 </div>
             </div>
         </section>
