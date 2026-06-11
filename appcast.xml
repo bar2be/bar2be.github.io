@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Bartube</title>
+    <link>https://bar2be.github.io/appcast.xml</link>
+    <description>Latest Bartube releases.</description>
+    <language>en</language>
+    <item>
+      <title>Version 1.0.0</title>
+      <pubDate>Thu, 11 Jun 2026 13:56:08 +0000</pubDate>
+      <sparkle:version>16</sparkle:version>
+      <sparkle:shortVersionString>1.0.0</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+      <enclosure
+        url="https://bar2be.github.io/downloads/Bartube-1.0.0-macOS.zip"
+        sparkle:edSignature="qtteaT1AOQwgejl6b6n70LSftj1g2ml8abrCBplGOCtF2eVgZkIkJbKEs5ZjtppNNiRa509ajXzvHjbg4oqHCQ=="
+        length="4426576"
+        type="application/zip"
+      />
+    </item>
+  </channel>
+</rss>
