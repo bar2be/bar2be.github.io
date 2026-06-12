@@ -1,11 +1,11 @@
 {
-  "version": "1.0.3",
-  "build": "19",
-  "publishedAt": "Fri, 12 Jun 2026 10:01:23 +0000",
+  "version": "1.0.5",
+  "build": "20",
+  "publishedAt": "Fri, 12 Jun 2026 10:17:40 +0000",
   "downloadURL": "https://bar2be.github.io/downloads/Bartube.zip",
   "downloadFilename": "Bartube.zip",
-  "archiveDownloadURL": "https://bar2be.github.io/downloads/Bartube-1.0.3-macOS.zip",
-  "archiveFilename": "Bartube-1.0.3-macOS.zip",
+  "archiveDownloadURL": "https://bar2be.github.io/downloads/Bartube-1.0.5-macOS.zip",
+  "archiveFilename": "Bartube-1.0.5-macOS.zip",
   "appcastURL": "https://bar2be.github.io/appcast.xml",
   "minimumSystemVersion": "14.0",
   "installNotes": [
