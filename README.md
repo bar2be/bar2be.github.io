@@ -8,6 +8,9 @@
   <a aria-label="Download Bartube" href="https://bar2be.github.io/downloads/Bartube.zip">
     <img alt="Download Bartube" src="https://img.shields.io/badge/Download-Bartube-black.svg?style=for-the-badge&logo=apple">
   </a>
+  <a aria-label="Purchase" href="https://bartube.gumroad.com/l/license" target="_blank">
+    <img alt="Purchase" src="https://img.shields.io/badge/Purchase-black.svg?style=for-the-badge&logo=ko-fi">
+  </a>
 </p>
 
 ## What Bartube Is
@@ -51,7 +54,7 @@ This key is used so the app can load playlist information from YouTube.
 
 ## Setup
 
-1. Download and open `Bartube.zip`.
+1. Download and unzip `Bartube.zip`.
 2. Move `Bartube.app` into your `Applications` folder.
 3. Launch Bartube.
 4. Open the app from the menu bar.
@@ -60,13 +63,6 @@ This key is used so the app can load playlist information from YouTube.
 7. Optionally paste your own playlist ID.
 8. Start playback.
 
-## FAQ
-
-What if macOS blocks the app on first launch?
-```shell
-xattr -dr com.apple.quarantine /Applications/Bartube.app
-```
-                        
 ## How To Use Your Own Playlist
 
 If you already have a YouTube playlist you use every day:
@@ -101,3 +97,7 @@ If you run into issues, the most common things to check are:
 - Bartube is designed around playlists and listening
 - Availability depends on YouTube and your API setup
 - This build is intended for direct download and manual installation
+
+<a aria-label="Buy me a coffee" href="https://www.buymeacoffee.com/kimtaek" target="_blank">
+  <img alt="Perches" height="28" src="https://raw.githubusercontent.com/pachadotdev/buymeacoffee-badges/main/bmc-yellow.svg">
+</a>
