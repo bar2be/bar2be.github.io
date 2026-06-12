@@ -730,9 +730,11 @@
             .then((latest) => {
                 if (!latest) return;
 
-                if (latest.downloadURL) {
+                const preferredDownloadURL = latest.archiveDownloadURL || latest.downloadURL;
+
+                if (preferredDownloadURL) {
                     document.querySelectorAll("[data-download-link]").forEach((link) => {
-                        link.href = latest.downloadURL;
+                        link.href = preferredDownloadURL;
                     });
                 }
 
@@ -746,7 +748,7 @@
                 if (latest.quarantineCommand) {
                     const note = document.querySelector("[data-install-note]");
                     if (note) {
-                        note.innerHTML = `First launch may require: <code>${latest.quarantineCommand}</code>`;
+                        note.innerHTML = `<code>${latest.quarantineCommand}</code>`;
                     }
                 }
             })
