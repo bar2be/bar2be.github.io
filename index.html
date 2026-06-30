@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bartube for macOS | Menu Bar YouTube Playlist Player</title>
-    <meta name="description" content="Bartube is a native macOS menu bar YouTube playlist player with background audio, custom playlists, Apple Music and Spotify menu bar awareness, and a cleaner desktop workflow.">
+    <meta name="description" content="Bartube is a native macOS menu bar YouTube player with saved playlists, YouTube search, background audio, Apple Music and Spotify awareness, and a cleaner desktop workflow.">
     <meta name="robots" content="index, follow, max-image-preview:large">
     <meta name="author" content="Bartube">
     <meta name="theme-color" content="#0A0A0A">
@@ -14,14 +14,14 @@
     <meta name="google-site-verification" content="efQvtv_GDWkd6cfjJCcL-SKJlxLf7vCEGenMym4r4ss" />
 
     <meta property="og:title" content="Bartube for macOS | Menu Bar YouTube Playlist Player">
-    <meta property="og:description" content="Playlist playback in your menu bar, now with Apple Music and Spotify awareness. Native, focused, and built for background listening.">
+    <meta property="og:description" content="Search YouTube, manage saved playlists, and play background audio from the macOS menu bar. Native, focused, and built for listening.">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Bartube">
     <meta property="og:image" content="./assets/Screenshot1.png">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Bartube for macOS | Menu Bar YouTube Playlist Player">
-    <meta name="twitter:description" content="A native macOS YouTube playlist player for background listening, with Apple Music and Spotify menu bar awareness.">
+    <meta name="twitter:description" content="A native macOS YouTube player for saved playlists, search, and background listening.">
     <meta name="twitter:image" content="./assets/Screenshot1.png">
 
     <link rel="icon" type="image/png" href="./assets/logo.png">
@@ -39,7 +39,7 @@
             "applicationCategory": "MultimediaApplication",
             "applicationSubCategory": "MusicApplication",
             "operatingSystem": "macOS 14.0 or later",
-            "description": "Bartube is a native macOS menu bar YouTube playlist player with background audio, custom playlist support, and Apple Music and Spotify menu bar awareness.",
+            "description": "Bartube is a native macOS menu bar YouTube player with saved playlists, YouTube search, background audio, and Apple Music and Spotify menu bar awareness.",
             "image": "./assets/Screenshot1.png",
             "screenshot": [
                 "./assets/Screenshot1.png",
@@ -626,10 +626,10 @@
             <div class="container hero__grid">
                 <div>
                     <span class="eyebrow">Menu bar YouTube</span>
-                    <h1 class="hero__title">Play your playlist, <span>keep your screen clean.</span></h1>
+                    <h1 class="hero__title">Search, save, and play <span>without the tab clutter.</span></h1>
                     <p class="hero__copy">
-                        Bartube gives you the useful part of YouTube: open the menu bar, press play, and keep listening without a tab
-                        permanently occupying your desktop.
+                        Bartube gives you the useful part of YouTube: search for a track, save playlists you return to, and keep listening
+                        from the menu bar without a browser tab occupying your desktop.
                     </p>
                     <div class="hero__actions">
                         <a class="button button--primary" data-download-link href="./downloads/Bartube.zip">Download Bartube</a>
@@ -637,8 +637,8 @@
                     </div>
                     <div class="hero__proof">
                         <span data-latest-version>Latest version</span>
-                        <span>Apple Music aware</span>
-                        <span>Spotify aware</span>
+                        <span>Saved playlists</span>
+                        <span>YouTube search</span>
                     </div>
                 </div>
 
@@ -662,7 +662,7 @@
                         <div class="point__number">01</div>
                         <h2 class="point__title">No more tab clutter</h2>
                         <p class="point__copy">
-                            Your music or long playlist lives in the menu bar instead of competing with work tabs all day.
+                            Your music, search results, and saved playlists live in the menu bar instead of competing with work tabs all day.
                         </p>
                     </article>
                     <article class="point">
@@ -676,37 +676,51 @@
                         <div class="point__number">03</div>
                         <h2 class="point__title">Built for repeat listening</h2>
                         <p class="point__copy">
-                            Custom playlists, automatic next-track flow, and a native desktop feel make it easy to come back every day.
+                            Named playlists, one-click playlist playback, and a native desktop feel make it easy to come back every day.
                         </p>
                     </article>
                 </div>
             </div>
         </section>
 
-        <section class="panel" id="external-players">
+        <section class="panel" id="features">
             <div class="container news">
                 <div>
-                    <span class="eyebrow">New support</span>
-                    <h2 class="news__title">Apple Music and Spotify now fit into the flow.</h2>
+                    <span class="eyebrow">New in Bartube</span>
+                    <h2 class="news__title">More ways to start listening.</h2>
                     <p class="news__copy">
-                        When Apple Music or Spotify is playing, Bartube can show the current track in the menu bar.
-                        Start YouTube playback from Bartube, and the other music app pauses first.
+                        Search YouTube directly, keep a local set of named playlists, and move between them without leaving the menu bar.
+                        Bartube still handles the handoff from Apple Music or Spotify before YouTube audio starts.
                     </p>
                 </div>
 
                 <div class="news__grid">
                     <article class="news__card">
-                        <div class="news__label">Apple Music</div>
-                        <h3 class="news__card-title">Menu bar awareness</h3>
+                        <div class="news__label">Search</div>
+                        <h3 class="news__card-title">Find a video fast</h3>
                         <p class="news__card-copy">
-                            See the current Apple Music track title with Bartube's scrolling text and wave animation.
+                            Type a keyword or paste a YouTube video URL. Bartube shows matching results without opening YouTube in a browser.
                         </p>
                     </article>
                     <article class="news__card">
-                        <div class="news__label">Spotify</div>
-                        <h3 class="news__card-title">Cleaner handoff</h3>
+                        <div class="news__label">Playlists</div>
+                        <h3 class="news__card-title">Save more than one</h3>
                         <p class="news__card-copy">
-                            Press play, previous, or next in Bartube and Spotify pauses before YouTube audio takes over.
+                            Add, edit, delete, and name YouTube playlists so the ones you use often are easy to recognize.
+                        </p>
+                    </article>
+                    <article class="news__card">
+                        <div class="news__label">Playback</div>
+                        <h3 class="news__card-title">Click and listen</h3>
+                        <p class="news__card-copy">
+                            Play a saved playlist from the playlist manager, or click a search result to start a focused audio queue.
+                        </p>
+                    </article>
+                    <article class="news__card">
+                        <div class="news__label">Limits</div>
+                        <h3 class="news__card-title">Built for music</h3>
+                        <p class="news__card-copy">
+                            Videos over 30 minutes are shown as unavailable for playback, keeping Bartube focused on track-like listening.
                         </p>
                     </article>
                 </div>
@@ -725,13 +739,32 @@
                     <details class="faq__item" open>
                         <summary class="faq__question">What if macOS blocks the app on first launch?</summary>
                         <p class="faq__answer" data-install-note>
+                            Move <code>Bartube.app</code> to <code>/Applications</code> first, then run:
                             <code>xattr -dr com.apple.quarantine /Applications/Bartube.app</code>
                         </p>
                     </details>
                     <details class="faq__item">
                         <summary class="faq__question">What do I need to get started?</summary>
                         <p class="faq__answer">
-                            Install the app, add your API key in settings, then start playing YouTube playlists from the menu bar.
+                            Install the app, add your API key in settings, then search YouTube or add a saved playlist from the menu bar.
+                        </p>
+                    </details>
+                    <details class="faq__item">
+                        <summary class="faq__question">Can I manage more than one playlist?</summary>
+                        <p class="faq__answer">
+                            Yes. Bartube has a playlist manager where you can add, edit, delete, name, select, and play saved YouTube playlists.
+                        </p>
+                    </details>
+                    <details class="faq__item">
+                        <summary class="faq__question">What happens if I paste a YouTube URL into search?</summary>
+                        <p class="faq__answer">
+                            Bartube recognizes normal YouTube video URLs and short links, then shows that video as a search result. You can still use plain keywords for regular YouTube search.
+                        </p>
+                    </details>
+                    <details class="faq__item">
+                        <summary class="faq__question">Why are some videos greyed out?</summary>
+                        <p class="faq__answer">
+                            Bartube disables playback for videos longer than 30 minutes. You can still open them on YouTube, copy the link, or share them.
                         </p>
                     </details>
                     <details class="faq__item">
@@ -748,7 +781,7 @@
             <div class="container cta">
                 <div>
                     <span class="eyebrow">Download</span>
-                    <h2 class="cta__title">If you mainly use YouTube for listening, this is the cleaner way.</h2>
+                    <h2 class="cta__title">If you use YouTube for listening, this is the cleaner way.</h2>
                     <p class="cta__copy">
                         Bartube is a focused utility, not a bloated media shell. It removes friction, reduces distraction,
                         and makes playlist playback feel like part of macOS instead of another website.
@@ -758,8 +791,10 @@
                 <aside class="cta__box">
                     <ul class="cta__list">
                         <li>Native macOS menu bar app</li>
-                        <li>Custom playlist support</li>
+                        <li>Named playlist manager</li>
+                        <li>YouTube search and URL lookup</li>
                         <li>Background audio playback</li>
+                        <li>30-minute playback guardrail</li>
                         <li>Apple Music and Spotify awareness</li>
                         <li>Simple setup with your API key</li>
                     </ul>
@@ -850,7 +885,7 @@
                 if (latest.quarantineCommand) {
                     const note = document.querySelector("[data-install-note]");
                     if (note) {
-                        note.innerHTML = `<code>${latest.quarantineCommand}</code>`;
+                        note.innerHTML = `Move <code>Bartube.app</code> to <code>/Applications</code> first, then run: <code>${latest.quarantineCommand}</code>`;
                     }
                 }
             })
