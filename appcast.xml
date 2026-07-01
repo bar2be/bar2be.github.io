@@ -6,15 +6,15 @@
     <description>Latest Bartube releases.</description>
     <language>en</language>
     <item>
-      <title>Version 1.0.12</title>
-      <pubDate>Tue, 30 Jun 2026 03:44:04 +0000</pubDate>
-      <sparkle:version>27</sparkle:version>
-      <sparkle:shortVersionString>1.0.12</sparkle:shortVersionString>
+      <title>Version 1.0.13</title>
+      <pubDate>Wed, 01 Jul 2026 10:32:57 +0000</pubDate>
+      <sparkle:version>28</sparkle:version>
+      <sparkle:shortVersionString>1.0.13</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
       <enclosure
-        url="https://bar2be.github.io/downloads/Bartube-1.0.12-macOS.zip"
-        sparkle:edSignature="eQU1J1PGzAOU5lmIuY1e/9ri86abFkBjF3+uZcEEKPaewuBieBql4jFRHSlzJYSbBe4QWaAzQhcCy1nDo6dBDQ=="
-        length="4569149"
+        url="https://bar2be.github.io/downloads/Bartube-1.0.13-macOS.zip"
+        sparkle:edSignature="BU6CFyFzjqRcgnnDwCI94KIZNrrDGnykmPMqjGecHMFrqfTHtIB5Y4It3+YpCIPeVwY1bRuou8bI5EbaPszTCg=="
+        length="4583512"
         type="application/zip"
       />
     </item>
